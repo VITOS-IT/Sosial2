@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.app-wrapper{
+  max-width: 1200px;
+  display:grid;
+  grid-template-areas:
+    'h h'
+    'n c';
+
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
+}
+.header{
+  grid-area: h;
+  background-color: #ccc;
+}
+.header img{
+  width: 50px;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.nav{
+  background-color: blueviolet;
+  grid-area: n;
+}
+.content{
+  background-color: #888888;
+  grid-area: c;
+}
+.content div img{
+  width: 100%;
+}
