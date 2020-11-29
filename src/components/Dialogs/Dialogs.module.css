@@ -1,0 +1,25 @@
+
+.dialogs{
+    display: flex;
+}
+.dialogsItem{
+    width: 20%;
+    border-right: black solid 2px;
+    margin-left: 20px;
+}
+.dialog a.active{
+    color: gold;
+}
+.dialog{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.dialog a{
+    color: white;
+    text-decoration: none;
+}
+.messages{
+    margin-left: 20px;
+    height: 100%;
+    /*width: 80%;*/
+}

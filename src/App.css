@@ -14,23 +14,8 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
 }
-.header{
-  grid-area: h;
-  background-color: #ccc;
-}
-.header img{
-  width: 50px;
-  margin-left: 20px;
-  margin-top: 5px;
-}
-.nav{
-  background-color: blueviolet;
-  grid-area: n;
-}
-.content{
+
+.app-wrapper-content{
   background-color: #888888;
   grid-area: c;
-}
-.content div img{
-  width: 100%;
 }
