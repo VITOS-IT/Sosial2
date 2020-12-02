@@ -1,4 +1,5 @@
-
+import profileReducer from "./profileReducer";
+import dialogReducer from "./dialogsReducer";
 
 let store = {
 
@@ -24,7 +25,8 @@ let store = {
                 {id: 3, message: 'Yo'},
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Yo'}
-            ]
+            ],
+            newMessageText: 'ggffgfg'
         }
     },
     _callSubskriber() {
@@ -38,41 +40,10 @@ let store = {
         this._callSubskriber = observer;
     },
 
-    addPost(){
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        }
-        this._state.profilePage.postData.push(newPost);
-        this._state.profilePage.newPostText = '';
-
-        this._callSubskriber(this._state)
-    },
-    updateNewPostText(newText){
-        this._state.profilePage.newPostText = newText;
-        this._callSubskriber(this._state);
-    },
     dispatch(action){
-        if (action.type === 'ADD-POST'){
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.postData.push(newPost);
-            this._state.profilePage.newPostText = '';
-
-            this._callSubskriber(this._state)
-        }
-        else if (action.type === 'UPDATE-NEW-POST-TEXT' ){
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubskriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = dialogReducer(this._state.messagesPage, action);
+        this._callSubskriber(this._state)
     }
-
-
-
-
 }
 export default store;
