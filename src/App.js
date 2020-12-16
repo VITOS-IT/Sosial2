@@ -4,11 +4,12 @@ import React from "react";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
-const App = (props) => {
+const App = () => {
 
   return (
 
@@ -17,11 +18,9 @@ const App = (props) => {
         <Navbar/>
 
         <div className="app-wrapper-content">
-            <Route path="/dialogs"> <Dialogs state={props.state.dialogReducer}
-                                             dispatch={props.dispatch}/>  </Route>
-
-            <Route path="/profile"> <Profile state={props.state.profileReducer}
-                                             dispatch={props.dispatch}/>  </Route>
+            <Route path="/dialogs"> <DialogsContainer />  </Route>
+            <Route path="/profile"> <Profile />  </Route>
+            <Route path="/users"><UsersContainer/></Route>
 
         </div>
     </div>
