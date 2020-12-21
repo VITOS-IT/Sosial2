@@ -1,9 +1,19 @@
 .header{
     grid-area: h;
     background-color: #ccc;
+    display: flex;
 }
 .header img{
     width: 50px;
     margin-left: 20px;
     margin-top: 5px;
+}
+.loginBlock{
+   margin:  auto 0 auto 20px;
+    font-weight: bold;
+    color: blueviolet;
+}
+.loginBlock a{
+    text-decoration: none;
+    color: blueviolet;
 }
