@@ -3,6 +3,7 @@ import s from './users.module.css'
 import altImg from '../../img/altAvatar.jpg'
 import {NavLink} from "react-router-dom";
 
+
 let Users = (props) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -15,7 +16,8 @@ let Users = (props) => {
     return <div>
         <div className={s.usersPage}>
             {pages.map(u => {
-                return <span className={props.currentPage === u && s.selectedPage}
+                return <span className={props.currentPage === u && s.selectedPage || s.notSelectedPage}
+                    // key={u}
                              onClick={() => {
                                  props.onPageChanged(u);
                              }}>{u}</span>
@@ -26,15 +28,15 @@ let Users = (props) => {
                 <div className={s.userFollowBlock}>
                     <div>
                         <NavLink to={'/profile/' + u.id}>
-                            <img src={u.photos.small || altImg} alt="avatar image" className={s.userPhoto}/>
+                            <img src={u.photos.small || altImg} alt="avatar" className={s.userPhoto}/>
                         </NavLink>
                     </div>
                     <div>
-                        {u.followed ? <button onClick={() => {
-                                props.unfollow(u.id)
-                            }} className={s.btnFollow}>Unfollow</button>
-                            : <button onClick={() => {
-                                props.follow(u.id)
+                        {u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                              onClick={() => {props.unfollow(u.id);}} className={s.btnFollow}>
+                                Unfollow</button>
+                            : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                      onClick={() => {props.follow(u.id)
                             }} className={s.btnFollow}>Follow</button>}
 
                     </div>
