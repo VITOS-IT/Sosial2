@@ -2,35 +2,49 @@ import React from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {Form, Field} from 'react-final-form'
 
 
+const Dialogs = (props) => {
 
-const Dialogs = (props) =>{
-    let newMessageElement = React.createRef();
-
-    let onAddMessage = () =>{
-        props.addMessage();
+    let onAddMessage = (formData) => {
+        console.log(formData.messageBody);
+        props.addMessage(formData.messageBody);
     }
-    let onMessageChange = () =>{
-        let text = newMessageElement.current.value;
-        props.onMessageChange(text);
-    }
+
 
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
-                {props.dialogsData.map(u=><DialogItem name={u.name} id={u.id} key={u.id}/>)}
+                {props.dialogsData.map(u => <DialogItem name={u.name} id={u.id} key={u.id}/>)}
             </div>
             <div className={s.messages}>
-                <div><textarea ref={newMessageElement} onChange={onMessageChange}
-                               value={props.newMessageText}></textarea></div>
-                <div><button onClick={onAddMessage}>Add message</button></div>
-                {props.messages.map(u=><Message message={u.message} key={u.id}/>)}
+                <div>
+                    <MessageForm onAddMessage={onAddMessage}/>
+                </div>
+                {props.messages.map(u => <Message message={u.message} key={u.id}/>)}
 
             </div>
         </div>
     )
 }
-
+const MessageForm = (props) => {
+    return (
+        <Form
+            onSubmit={values => {props.onAddMessage(values);}}
+            render={({handleSubmit}) => (
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <Field name={'messageBody'} component="input" type="text" placeholder={'enter message'}
+                        />
+                    </div>
+                    <div>
+                        <button type="submit" >Add message</button>
+                    </div>
+                </form>
+            )}
+        />
+    )
+}
 export default Dialogs
