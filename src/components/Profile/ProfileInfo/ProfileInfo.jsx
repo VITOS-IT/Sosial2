@@ -3,6 +3,7 @@ import aaaa from "../../../img/head-img.jpg";
 import s from './ProfileInfo.module.css'
 import altImg from "../../../img/altAvatar.jpg";
 import Preloader from "../../Common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
     if (!props.profile){
@@ -11,14 +12,14 @@ const ProfileInfo = (props) => {
     return (
         <div>
             <div>
-                <img src={aaaa}/>
+                <img src={aaaa} alt={'fon'}/>
             </div>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large || altImg} alt="avatar image" className={s.avatarPhoto}/>
+                <img src={props.profile.photos.large || altImg} alt="avatar" className={s.avatarPhoto}/>
                 <br/>
                 My name: {props.profile.fullName} <br/>
                 about me: {props.profile.aboutMe}
-
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
