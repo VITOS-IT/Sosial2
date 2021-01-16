@@ -4,7 +4,7 @@ export const getUsers = (state) =>{
     return state.usersPage.users;
 }
 export const getUsersSuper = createSelector(getUsers, (users) =>{
-    users.filter(u => true)
+    return users.filter(u => true)
     })
 
 

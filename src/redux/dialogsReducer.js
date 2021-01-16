@@ -1,4 +1,4 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
+const ADD_MESSAGE = 'samurai-net/dialog/ADD-MESSAGE';
 
 
 let initialState = {

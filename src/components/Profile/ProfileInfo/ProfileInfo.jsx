@@ -4,6 +4,7 @@ import s from './ProfileInfo.module.css'
 import altImg from "../../../img/altAvatar.jpg";
 import Preloader from "../../Common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHook from "./ProfileStatusWithHook";
 
 const ProfileInfo = (props) => {
     if (!props.profile){
@@ -19,7 +20,7 @@ const ProfileInfo = (props) => {
                 <br/>
                 My name: {props.profile.fullName} <br/>
                 about me: {props.profile.aboutMe}
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHook status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )

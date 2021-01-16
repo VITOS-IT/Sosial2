@@ -1,7 +1,7 @@
 import {authAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
-const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER_DATA = 'samurai-net/auth/SET_USER_DATA';
 
 let initialState = {
     userId: null,
@@ -26,44 +26,29 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USER_DATA, payload: {userId, email, login, isAuth}});
 
-export const setMe = () => (dispatch) => {
-        return authAPI.me()
-            .then(response => {
+export const setMe = () => async (dispatch) => {
+    let response = await authAPI.me()
                 if (response.resultCode === 0) {
                     let {id, login, email} = response.data
                     dispatch(setAuthUserData(id, email, login,true));
                 }
-
-            });
-
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-
-
-
-        authAPI.login(email, password, rememberMe)
-            .then(response => {
+export const login = (email, password, rememberMe) => async (dispatch) => {
+    let response = await authAPI.login(email, password, rememberMe)
                 if (response.resultCode === 0) {
                     dispatch(setMe());
                 }else{
                    let message = response.messages.length > 0 ? response.messages[0]:'Some error'
                     dispatch(stopSubmit('login', {_error: message}))
                 }
-
-            });
     }
 
-export const logout = () => {
-    return (dispatch) => {
-        authAPI.logout()
-            .then(response => {
+export const logout = () => async (dispatch) => {
+    let response = await authAPI.logout()
                 if (response.resultCode === 0) {
                     dispatch(setAuthUserData(null, null, null, false));
                 }
-
-            });
-    }
 }
 
 export default authReducer;

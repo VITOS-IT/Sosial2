@@ -2,27 +2,23 @@ import React from 'react'
 import s from './users.module.css'
 import altImg from '../../img/altAvatar.jpg'
 import {NavLink} from "react-router-dom";
+import Paginator from "../Common/Paginator/Paginator";
 
 
-let Users = (props) => {
-
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
+let Users = ({currentPage, onPageChanged, totalUsersCount, pageSize, ...props}) => {
 
     return <div>
-        <div className={s.usersPage}>
-            {pages.map(u => {
-                return <span className={props.currentPage === u && s.selectedPage || s.notSelectedPage}
-                    // key={u}
-                             onClick={() => {
-                                 props.onPageChanged(u);
-                             }}>{u}</span>
-            })}
-        </div>
+        {/*<div className={s.usersPage}>*/}
+        {/*    {pages.map(u => {*/}
+        {/*        return <span className={currentPage === u && s.selectedPage || s.notSelectedPage}*/}
+        {/*            // key={u}*/}
+        {/*                     onClick={() => {*/}
+        {/*                         props.onPageChanged(u);*/}
+        {/*                     }}>{u}</span>*/}
+        {/*    })}*/}
+        {/*</div>*/}
+        <Paginator currentPage={currentPage} onPageChanged={onPageChanged}
+                   totalUsersCount={totalUsersCount} pageSize={pageSize}/>
         {
             props.users.map(u => <div key={u.id} className={s.userContainer}>
                 <div className={s.userFollowBlock}>
