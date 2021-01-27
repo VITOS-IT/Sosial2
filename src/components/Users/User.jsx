@@ -4,7 +4,7 @@ import altImg from '../../img/altAvatar.jpg'
 import {NavLink} from "react-router-dom";
 
 
-let User = ({user,key, followingInProgress, unfollow, follow}) => {
+let User = ({user, followed,key, followingInProgress, unfollow, follow}) => {
     return (
         <div key={key} className={s.userContainer}>
                 <div className={s.userFollowBlock}>
@@ -14,7 +14,7 @@ let User = ({user,key, followingInProgress, unfollow, follow}) => {
                         </NavLink>
                     </div>
                     <div>
-                        {user.followed ? <button disabled={followingInProgress.some(id => id === user.id)}
+                        {followed ? <button disabled={followingInProgress.some(id => id === user.id)}
                                               onClick={() => {unfollow(user.id);}} className={s.btnFollow}>
                                 Unfollow</button>
                             : <button disabled={followingInProgress.some(id => id === user.id)}
