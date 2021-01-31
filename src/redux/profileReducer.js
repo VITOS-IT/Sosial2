@@ -86,4 +86,7 @@ export const saveProfile = (profile) => async (dispatch,getState) => {
         return Promise.reject(response.data.messages[0])
     }
 }
+// let str = 'Invalid url format (Contacts->Github)'
+// let splstr = str.split('->')
+// let splstr1 = splstr[1].split(')')[0]
 export default profileReducer;
